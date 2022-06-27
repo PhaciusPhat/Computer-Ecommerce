@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,11 +43,10 @@
             <div class="col-lg-4 col-6 text-right">
                 <div class="btn-group">
                     <?php
-                    session_start();
-
+                    include './models/Category.php';
                     if (isset($_SESSION['user'])) {
                         echo '<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Xin chào ' . $_SESSION['user'] . '</button>';
-                        echo' <div class="dropdown-menu">
+                        echo ' <div class="dropdown-menu">
                             <a class="dropdown-item" href="trangchu.php">Trang chủ</a>
                             <a class="dropdown-item" href="dangxuat.php">Đăng xuất</a>
                         </div>';
@@ -75,12 +76,13 @@
                 </a>
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                     <div class="navbar-nav w-100">
-                        <a href="" class="nav-item nav-link">Điện Thoại</a>
-                        <a href="" class="nav-item nav-link">Máy Tính</a>
-                        <a href="" class="nav-item nav-link">Bàn Phím</a>
-                        <a href="" class="nav-item nav-link">Chuột</a>
-                        <a href="" class="nav-item nav-link">Phụ Kiện</a>
-
+                        <?php
+                        $category = new Category();
+                        $categories = $category->get_all_category();
+                        foreach ($categories as $cate) {
+                            echo '<a class="nav-item nav-link text-dark" href="dssanpham.php?cateId=' . $cate['id'] . '">' . $cate['name'] . '</a>';
+                        }
+                        ?>
                     </div>
                 </nav>
             </div>
@@ -95,16 +97,17 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="trangchu.html" class="nav-item nav-link ">Trang chủ</a>
-                            <a href="dssanpham.html" class="nav-item nav-link">Sản phẩm</a>
-                            <a href="dshoadon.html" class="nav-item nav-link">Lịch sử đơn hàng</a>
-                            <a href="lienhe.html" class="nav-item nav-link">Liên Hệ</a>
-
+                            <a href="trangchu.php" class="nav-item nav-link ">Trang chủ</a>
+                            <a href="dssanpham.php" class="nav-item nav-link">Sản phẩm</a>
+                            <?php
+                            if (isset($_SESSION['user'])) {
+                                echo ' <a href="dshoadon.php" class="nav-item nav-link">Lịch sử đơn hàng</a>';
+                            }
+                            ?>
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                            <a href="giohang.html" class="btn px-0 ml-3">
+                            <a href="giohang.php" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
                             </a>
                         </div>
                     </div>

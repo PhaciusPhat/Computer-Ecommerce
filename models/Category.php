@@ -15,6 +15,13 @@ class Category
         return $result;
     }
 
+    public function get_category_by_id($id)
+    {
+        $queryString = "SELECT * FROM category WHERE id = $id";
+        $result = $this->db->query_execute($queryString);
+        return $result;
+    }
+
     public function add_category($name)
     {
         

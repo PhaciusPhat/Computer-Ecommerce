@@ -31,7 +31,6 @@
             // 
             // $connection->query("SET NAMES utf-8");
             $result = $connection->query($queryString);
-            $connection->close();
             return $result;
         }
         // trả về mảng kết quả

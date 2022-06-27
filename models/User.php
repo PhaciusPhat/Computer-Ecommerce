@@ -43,4 +43,37 @@ class User
         }
         return true;
     }
+
+    public function get_all_user()
+    {
+        $this->db = new Db();
+        $queryString = "SELECT * FROM user";
+        $result = $this->db->query_execute($queryString);
+        if ($result == false) {
+            return false;
+        }
+        return $result;
+    }
+
+    public function get_user_by_id($id)
+    {
+        $this->db = new Db();
+        $queryString = "SELECT * FROM user WHERE id = $id";
+        $result = $this->db->query_execute($queryString);
+        if ($result == false) {
+            return false;
+        }
+        return $result;
+    }
+
+    public function get_user_by_username($username)
+    {
+        $this->db = new Db();
+        $queryString = "SELECT * FROM user WHERE username = '$username'";
+        $result = $this->db->query_execute($queryString);
+        if ($result == false) {
+            return false;
+        }
+        return $result;
+    }
 }

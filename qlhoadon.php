@@ -1,4 +1,9 @@
-<?php include('./admin_header.php') ?>
+<?php include('./admin_header.php') ;
+include('./models/Order.php');
+
+$user = new User();
+$order = new Order();
+?>
 
 
 
@@ -18,18 +23,25 @@
                     </tr>
                 </thead>
                 <tbody class="align-middle">
-                    <tr style="height: fit-content">
-                        <td class="align-middle">1</td>
-                        <td class="align-middle">$150</td>
-                        <td class="align-middle">$150</td>
-                        <td class="align-middle">$150</td>
-                        <td class="align-middle">$150</td>
-                        <td class="align-middle">
-                            <button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
-                            <button class="btn btn-sm btn-info"><i class="fas fa-eye"></i></button>
-                        </td>
-                    </tr>
-                    
+                    <?php
+                    foreach ($order->get_all_order() as $order) {
+                        $rsFind = $user->get_user_by_id($order['userId']);
+                        foreach ($rsFind as $u) {
+                            echo '
+                                <tr>
+                                    <td>' . $order['id'] . '</td>
+                                    <td>' . $u['id'] . '</td>
+                                    <td>' . $u['name'] . '</td>
+                                    <td>' . date('m/d/Y H:i:s', $order['create_date']) . '</td>
+                                    <td>' . number_format($order['totalPrice'], 0, '', ',') . "đ" . '</td>
+                                    <td>
+                                        <a href="quanlichitiethoadon.php?id=' . $order['id'] . '" class="btn btn-primary">Xem</a>
+                                    </td>
+                                </tr>
+                            ';
+                        }
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>

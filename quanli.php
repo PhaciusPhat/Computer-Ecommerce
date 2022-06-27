@@ -28,7 +28,7 @@ if (isset($_POST['btn-login'])) {
 
         if ($rs == 1) {
             $_SESSION['user'] = $username;
-            echo "<script>window.location.assign('trangchu.php')</script>";
+            echo "<script>window.location.assign('qlhoadon.php')</script>";
         } else {
             echo '<script>alert("Đăng nhập thất bại!");</script>';
         }
@@ -60,5 +60,3 @@ if (isset($_POST['btn-login'])) {
         </div>
     </div>
 </section>
-
-<?php include './footer.php' ?>

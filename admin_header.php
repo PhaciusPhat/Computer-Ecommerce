@@ -42,14 +42,24 @@
                 <div class="btn-group">
                     <?php
                     session_start();
-
+                    include './models/User.php';
+                    $user = new User();
                     if (isset($_SESSION['user'])) {
+
+                        $find_user = $user->get_user_by_username($_SESSION['user']);
+                        foreach ($find_user as $key => $value) {
+                            $role = $value['role'];
+                        }
+                        if ($role == 0) {
+                            echo "<script>window.location.assign('trangchu.php')</script>";
+                        }
                         echo '<button type="button" class="btn btn-dark btn-sm dropdown-toggle" data-toggle="dropdown">Xin chào ' . $_SESSION['user'] . '</button>';
-                        echo' <div class="dropdown-menu">
+                        echo ' <div class="dropdown-menu">
                             <a class="dropdown-item" href="trangchu.php">Trang chủ</a>
                             <a class="dropdown-item" href="dangxuat.php">Đăng xuất</a>
                         </div>';
                     } else {
+                        echo "<script>window.location.assign('trangchu.php')</script>";
                         echo '
                             <button type="button" class="btn-sm btn btn-dark dropdown-toggle" data-toggle="dropdown">Đăng nhập</button>
                             <div class="dropdown-menu">

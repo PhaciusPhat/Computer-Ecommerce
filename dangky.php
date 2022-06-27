@@ -1,7 +1,7 @@
+<?php include('./header.php') ?>
 <?php
-session_start();
 if (isset($_SESSION['user'])) {
-    header('Location: trangchu.php');
+    echo "<script>window.location.assign('trangchu.php')</script>";
 }
 require_once './models/User.php';
 require_once './utils/Validate.php';
@@ -41,7 +41,7 @@ if (isset($_POST['btn-regis'])) {
     }
 }
 ?>
-<?php include('./header.php') ?>
+
 <div class="col-lg-register-container">
     <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3 ml-4">Tạo Tài Khoản Mới</span></h5>
     <div class="bg-light p-30 mb-5">

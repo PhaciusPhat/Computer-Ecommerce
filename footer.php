@@ -54,15 +54,6 @@
 
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Liên Hệ</h5>
-                        <p>Hãy để lại e-mail của bạn để chúng tôi có thể liên hệ sớm nhất</p>
-                        <form action="">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Your Email Address">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary">Sign Up</button>
-                                </div>
-                            </div>
-                        </form>
                         <h6 class="text-secondary text-uppercase mt-4 mb-3">Follow Us</h6>
                         <div class="d-flex">
                             <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
